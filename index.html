@@ -1,93 +1,37 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#030912">
-<title>JARVIS Watch — Prototype</title>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#030912"><title>JARVIS Watch AI</title>
 <style>
-:root{--cyan:#00cfff;--blue:#1678ff;--bg:#030912;--panel:#071522;--muted:#8ba7ba;--line:#10466a}
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at 50% 0,#09233b 0,#030912 48%,#010409 100%);color:#e8faff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
-.wrap{max-width:480px;margin:auto;padding:18px 15px 34px}
-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-.brand{letter-spacing:.25em;color:var(--cyan);font-size:13px;font-weight:800}
-.badge{font-size:11px;border:1px solid #12668a;border-radius:20px;padding:5px 9px;color:#7ceaff}
-.watch{width:min(88vw,350px);aspect-ratio:1;margin:8px auto 20px;border-radius:50%;border:2px solid #0877a7;box-shadow:0 0 22px #00aaff36,inset 0 0 28px #0076b533;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle,#071d31 0,#02070e 66%);overflow:hidden}
-.watch:before,.watch:after{content:"";position:absolute;border:1px solid #0876a4;border-radius:50%;inset:12px}
-.watch:after{inset:22px;border-style:dashed;opacity:.7}
-.tick{position:absolute;inset:5px;border-radius:50%;border:3px dotted #00bfff55}
-.watch-label{z-index:1;color:var(--cyan);font-size:12px;letter-spacing:.28em}
-.clock{z-index:1;font-size:clamp(42px,13vw,60px);font-weight:750;letter-spacing:-.05em;line-height:1.2;text-shadow:0 0 16px #00cfff88}
-.date{z-index:1;color:#a5d9ef;font-size:12px;letter-spacing:.12em}
-.core{z-index:1;width:72px;height:72px;margin:10px 0;border-radius:50%;border:2px solid var(--cyan);display:grid;place-items:center;box-shadow:0 0 24px #00cfff55,inset 0 0 15px #00cfff44;color:var(--cyan);font-size:25px}
-.stats{z-index:1;display:flex;gap:16px;font-size:11px;color:#b5d7e6}
-.stats b{display:block;color:#fff;font-size:14px;text-align:center}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.card{background:linear-gradient(145deg,#0a1c2b,#050c14);border:1px solid #103954;border-radius:16px;padding:14px;min-height:92px}
-.card .icon{font-size:21px}.card h3{font-size:13px;margin:7px 0 3px}.card p{font-size:11px;color:var(--muted);margin:0;line-height:1.4}
-.section{margin-top:16px;background:#06111c;border:1px solid #103954;border-radius:17px;padding:14px}
-.section h2{font-size:14px;margin:0 0 10px;letter-spacing:.06em}
-.row{display:flex;gap:8px}
-input,textarea{background:#02070d;color:#e8faff;border:1px solid #17445d;border-radius:12px;padding:12px;width:100%;font:inherit;font-size:14px;outline:none}
-button{background:linear-gradient(135deg,#007ba9,#0755b7);color:white;border:0;border-radius:12px;padding:11px 13px;font-weight:700;font-size:13px}
-button.secondary{background:#0a1b2a;border:1px solid #18516e;color:#aeefff}
-#answer{white-space:pre-wrap;font-size:13px;line-height:1.5;color:#cbeaf6;margin-top:10px;min-height:18px}
-small,.note{font-size:11px;color:#7f9fb3;line-height:1.45}
-footer{text-align:center;color:#52768d;font-size:10px;letter-spacing:.16em;margin-top:18px}
-@media(min-width:420px){.wrap{padding-top:24px}}
-</style>
-</head>
-<body>
-<div class="wrap">
-<header><div class="brand">J A R V I S</div><div class="badge">WATCH CONCEPT · v0.1</div></header>
-<div class="watch" aria-label="JARVIS watch face preview">
-  <div class="tick"></div>
-  <div class="watch-label">PERSONAL AI</div>
-  <div class="clock" id="clock">--:--</div>
-  <div class="date" id="date">LOADING DATE</div>
-  <div class="core">✦</div>
-  <div class="stats"><span>STEPS<b>—</b></span><span>HEART RATE<b>—</b></span><span>BATTERY<b>—</b></span></div>
-</div>
+:root{--c:#00d9ff;--p:#a855f7;--n:#ff3eb5;--bg:#030710;--panel:#091421;--muted:#91a8bd}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0,#20103d 0,#071629 36%,var(--bg) 75%);color:#f0f9ff;font-family:system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}.wrap{max-width:520px;margin:auto;padding:18px 15px 32px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.brand{font-weight:900;letter-spacing:.22em;color:var(--c)}.badge{font-size:10px;border:1px solid #7948a5;border-radius:20px;padding:5px 8px;color:#e4c7ff}
+.watch{width:min(86vw,340px);aspect-ratio:1;margin:12px auto 20px;border-radius:50%;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;background:radial-gradient(circle,#14263e 0,#070b18 65%,#03050c 100%);border:2px solid var(--c);box-shadow:0 0 18px #00d9ff60,0 0 45px #a855f72a,inset 0 0 26px #a855f733;overflow:hidden}.watch:before,.watch:after{content:"";position:absolute;inset:12px;border:1px solid #00d9ff8a;border-radius:50%}.watch:after{inset:22px;border:1px dashed #ff3eb577}.orbit{position:absolute;inset:5px;border:3px dotted #a855f766;border-radius:50%}.label{z-index:1;font-size:10px;letter-spacing:.3em;color:var(--c)}.clock{z-index:1;font-size:clamp(44px,13vw,58px);font-weight:800;letter-spacing:-.06em;text-shadow:0 0 15px #00d9ff70}.date{z-index:1;font-size:12px;color:#d9caff}.core{z-index:1;width:62px;height:62px;border-radius:50%;margin:8px;border:2px solid var(--n);display:grid;place-items:center;color:var(--n);font-size:25px;box-shadow:0 0 20px #ff3eb566,inset 0 0 12px #ff3eb533}.stats{z-index:1;display:flex;gap:14px;font-size:10px;color:#b8d4e8}.stats b{display:block;text-align:center;font-size:13px;color:white}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card,.section{background:linear-gradient(145deg,#101a2b,#07101b);border:1px solid #253654;border-radius:16px;padding:13px}.card{min-height:95px}.icon{font-size:20px}.card h3{font-size:12px;margin:6px 0 3px;letter-spacing:.08em}.card p,.note{font-size:11px;color:var(--muted);line-height:1.45;margin:0}.section{margin-top:14px}.section h2{font-size:13px;letter-spacing:.08em;margin:0 0 10px}.row{display:flex;gap:8px;margin-top:8px}input{min-width:0;width:100%;background:#030811;border:1px solid #344765;color:white;border-radius:11px;padding:12px;font:inherit;font-size:13px}button{border:0;border-radius:11px;background:linear-gradient(120deg,#007eaa,#7141c7);color:white;font-weight:750;padding:11px 13px;font-size:12px}button.alt{background:#101b2d;border:1px solid #43516c}button:disabled{opacity:.5}#answer{white-space:pre-wrap;font-size:13px;line-height:1.55;color:#d8f4ff;margin-top:12px;min-height:24px;overflow-wrap:anywhere}.status{font-size:10px;color:#83d8ff;margin-top:7px}.note{margin-top:10px}footer{text-align:center;color:#7187a5;font-size:10px;letter-spacing:.14em;margin-top:18px}
+</style></head><body><main class="wrap">
+<header><div class="brand">J A R V I S</div><div class="badge">WATCH AI · v1.0</div></header>
+<div class="watch" aria-label="JARVIS watch face preview"><div class="orbit"></div><div class="label">PERSONAL AI</div><div class="clock" id="clock">--:--</div><div class="date" id="date">LOADING</div><div class="core">✦</div><div class="stats"><span>STEPS<b>—</b></span><span>HEART<b>—</b></span><span>BATTERY<b>—</b></span></div></div>
 <div class="grid">
- <div class="card"><div class="icon">◉</div><h3>AI ASSISTANT</h3><p>Ask questions in the assistant panel below.</p></div>
- <div class="card"><div class="icon">🎙</div><h3>VOICE INPUT</h3><p>Use your browser's speech recognition if available.</p></div>
- <div class="card"><div class="icon">♡</div><h3>HEALTH DATA</h3><p>Real sensor readings need compatible watch access.</p></div>
- <div class="card"><div class="icon">⌁</div><h3>WATCH LINK</h3><p>Not connected to the Pebble Orbit yet.</p></div>
+<div class="card"><div class="icon">◉</div><h3>AI ASSISTANT</h3><p>Connect your own secure AI backend to enable real AI replies.</p></div>
+<div class="card"><div class="icon">🎙</div><h3>VOICE CONTROL</h3><p>Speak to the assistant where browser speech recognition is supported.</p></div>
+<div class="card"><div class="icon">♡</div><h3>HEALTH</h3><p>Sensor values are placeholders until device access is confirmed.</p></div>
+<div class="card"><div class="icon">⌁</div><h3>DEVICE LINK</h3><p>Pebble Orbit connection is not yet implemented or verified.</p></div>
 </div>
-<div class="section">
- <h2>JARVIS · ASSISTANT CONSOLE</h2>
- <div class="row"><input id="question" placeholder="Ask JARVIS something…" autocomplete="off"><button id="ask">ASK</button></div>
- <div class="row" style="margin-top:8px"><button class="secondary" id="voice">🎙 Speak</button><button class="secondary" id="clear">Clear</button></div>
- <div id="answer">Hello. I am your JARVIS prototype. Ask me for a time check, feature status, or a simple explanation.</div>
- <p class="note">Prototype mode: this page does not yet call an online AI model, access watch sensors, or install firmware.</p>
-</div>
-<footer>JARVIS WATCH · CONCEPT PROTOTYPE · NOT DEVICE FIRMWARE</footer>
-</div>
+<section class="section"><h2>JARVIS · ASSISTANT CONSOLE</h2>
+<div class="row"><input id="question" placeholder="Ask JARVIS anything…" autocomplete="off"><button id="ask">ASK</button></div>
+<div class="row"><button class="alt" id="voice">🎙 Speak</button><button class="alt" id="clear">Clear</button></div>
+<div class="status" id="status">Demo mode · Add your deployed backend URL below to enable real AI.</div>
+<div id="answer">Hello! I am JARVIS. Try asking for the time, date, or a general question.</div>
+<div class="row"><input id="apiBase" placeholder="Backend URL (optional)"><button class="alt" id="save">Save</button></div>
+<p class="note">Never put an AI secret key in this page. Save only the URL of your deployed backend. This is a web prototype, not watch firmware.</p>
+</section><footer>JARVIS WATCH AI · CYAN / PURPLE / NEON PINK</footer></main>
 <script>
-const clock=document.getElementById('clock'), date=document.getElementById('date');
-function tick(){const d=new Date();clock.textContent=d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',hour12:false});date.textContent=d.toLocaleDateString([], {weekday:'short',day:'2-digit',month:'short'}).toUpperCase();}
-tick();setInterval(tick,1000);
-const answer=document.getElementById('answer'), input=document.getElementById('question');
-function respond(){
- const q=input.value.trim(); if(!q)return;
- const s=q.toLowerCase(); let r;
- if(s.includes('time')) r='The current time on this device is '+new Date().toLocaleTimeString()+'.';
- else if(s.includes('date')||s.includes('day')) r='Today is '+new Date().toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'})+'.';
- else if(s.includes('battery')) r='This prototype cannot read your watch battery yet. We need a supported device API or companion-app integration.';
- else if(s.includes('heart')||s.includes('step')||s.includes('health')) r='Live health readings are not connected. We must verify whether the Pebble Orbit exposes sensor data to third-party software.';
- else if(s.includes('watch')||s.includes('firmware')||s.includes('install')) r='I am currently a UI prototype, not installed on the watch. First we need to identify a safe, supported way to communicate with the Pebble Orbit.';
- else r='I can handle a few demo commands, but online AI is not connected yet. The next development step is to connect a real AI API through a secure backend—never put a private API key in this HTML file.';
- answer.textContent='YOU: '+q+'\n\nJARVIS: '+r; input.value='';
-}
-document.getElementById('ask').addEventListener('click',respond);
-input.addEventListener('keydown',e=>{if(e.key==='Enter')respond()});
-document.getElementById('clear').addEventListener('click',()=>{answer.textContent='Console cleared. Hello again.';input.value='';});
-document.getElementById('voice').addEventListener('click',()=>{
- const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
- if(!SR){answer.textContent='Voice input is not supported in this browser. Try Chrome on Android, and allow microphone access.';return;}
- const rec=new SR();rec.lang='en-IN';rec.interimResults=false;
- answer.textContent='Listening…';rec.onresult=e=>{input.value=e.results[0][0].transcript;respond();};rec.onerror=()=>answer.textContent='Could not hear clearly. Check microphone permission and try again.';rec.start();
-});
-</script>
-</body></html>
+const $=id=>document.getElementById(id),clock=$('clock'),date=$('date'),answer=$('answer'),input=$('question'),status=$('status');
+function tick(){let d=new Date();clock.textContent=d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',hour12:false});date.textContent=d.toLocaleDateString([],{weekday:'short',day:'2-digit',month:'short'}).toUpperCase()}tick();setInterval(tick,1000);
+const stored=localStorage.getItem('jarvisBackendUrl')||'';$('apiBase').value=stored;if(stored)status.textContent='Backend URL saved · Real AI will be attempted.';
+$('save').onclick=()=>{let u=$('apiBase').value.trim().replace(/\/$/,'');if(u&&!/^https?:\/\//i.test(u)){status.textContent='Enter a full URL starting with https://';return}localStorage.setItem('jarvisBackendUrl',u);status.textContent=u?'Backend URL saved.':'Backend URL cleared; demo mode active.'};
+function demo(q){let s=q.toLowerCase();if(s.includes('time'))return 'The current time on this device is '+new Date().toLocaleTimeString()+'.';if(s.includes('date')||s.includes('day'))return 'Today is '+new Date().toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'})+'.';if(s.includes('battery')||s.includes('heart')||s.includes('step')||s.includes('health'))return 'Live watch sensor data is not connected yet. Device API support must be verified first.';return 'Demo mode is active, so I cannot answer general questions with real AI yet. Deploy the backend described in the repository README, then save its URL here.'}
+async function respond(){let q=input.value.trim();if(!q)return;input.value='';$('ask').disabled=true;answer.textContent='YOU: '+q+'\n\nJARVIS: Thinking…';let base=localStorage.getItem('jarvisBackendUrl')||'';try{if(base){let res=await fetch(base+'/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q})});let data=await res.json();if(!res.ok)throw Error(data.error||'Backend request failed');answer.textContent='YOU: '+q+'\n\nJARVIS: '+data.reply;status.textContent='Connected to AI backend.'}else{answer.textContent='YOU: '+q+'\n\nJARVIS: '+demo(q)}}catch(e){answer.textContent='YOU: '+q+'\n\nJARVIS: Could not reach the AI backend. Check the URL and deployment logs.\n\nDetails: '+e.message;status.textContent='AI backend connection failed.'}finally{$('ask').disabled=false}}
+$('ask').onclick=respond;input.addEventListener('keydown',e=>{if(e.key==='Enter')respond()});$('clear').onclick=()=>{answer.textContent='Console cleared. Hello again.';input.value=''};
+$('voice').onclick=()=>{let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){answer.textContent='Voice input is not supported by this browser. Try Chrome and allow microphone permission.';return}let rec=new SR();rec.lang='en-IN';rec.interimResults=false;status.textContent='Listening…';rec.onresult=e=>{input.value=e.results[0][0].transcript;respond()};rec.onerror=()=>status.textContent='Voice input failed. Check microphone permission.';rec.start()};
+</script></body></html>
